@@ -15,36 +15,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.openid.appauth">
 
-  <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-  <application>
-    <activity android:name=".AuthorizationManagementActivity"
-      android:exported="false"
-      android:theme="@android:style/Theme.Translucent.NoTitleBar"
-      android:launchMode="singleTask" />
+    <application>
+        <activity android:name=".AuthorizationManagementActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:launchMode="singleTask" />
 
-    <activity android:name=".RedirectUriReceiverActivity" android:exported="true">
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
-        <category android:name="android.intent.category.DEFAULT"/>
-        <category android:name="android.intent.category.BROWSABLE"/>
-          <data android:scheme="@string/keycloak_auth_redirect_scheme"/>
-      </intent-filter>
-    </activity>
+        <activity android:name=".RedirectUriReceiverActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="${appAuthRedirectScheme}"/>
+            </intent-filter>
+        </activity>
+    </application>
 
-      <!-- Callback from logout screen -->
-      <activity android:name="net.openid.appauth.LogoutUriReceiverActivity">
-          <!--
-              Filter which captures custom scheme based redirects for Google authorization
-              requests.
-          -->
-          <intent-filter>
-              <action android:name="android.intent.action.VIEW"/>
-              <category android:name="android.intent.category.DEFAULT"/>
-              <category android:name="android.intent.category.BROWSABLE"/>
-              <data android:scheme="@string/keycloak_auth_logout_scheme"/>
-      </intent-filter>
-    </activity>
-  </application>
 
 </manifest>
